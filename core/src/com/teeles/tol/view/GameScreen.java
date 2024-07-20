@@ -2,7 +2,9 @@ package com.teeles.tol.view;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -10,6 +12,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.teeles.tol.model.field.Field;
 import com.teeles.tol.model.GameModel;
+
+import javax.swing.plaf.synth.SynthTextAreaUI;
 
 
 public class GameScreen implements Screen {
@@ -23,6 +27,7 @@ public class GameScreen implements Screen {
     Texture seaImage;
     Texture rockImage;
     Texture treeImage;
+    Texture manImage;
 
     Texture[][] fields;
 
@@ -36,6 +41,8 @@ public class GameScreen implements Screen {
         seaImage = new Texture(Gdx.files.internal("sea.png"));
         rockImage = new Texture(Gdx.files.internal("rock.png"));
         treeImage = new Texture(Gdx.files.internal("tree.png"));
+        manImage = new Texture(Gdx.files.internal("man.png"));
+
 
         initialiseFields();
         
@@ -67,6 +74,21 @@ public class GameScreen implements Screen {
         // coordinate system specified by the camera.
         game.batch.setProjectionMatrix(camera.combined);
 
+        //checking if there was any user input
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            model.moveLeft();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            model.moveRight();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            model.moveUp();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            model.moveDown();
+        }
+
+
 
         game.batch.begin();
         for (int i = 0; i < 12; i++) {
@@ -75,15 +97,25 @@ public class GameScreen implements Screen {
             }
         }
 
+        game.batch.enableBlending();
+        game.batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+        // Draw the overlay image with transparency
+        game.batch.setColor(1, 1, 1, 0.3f); // Set transparency to 50%
+        int x = 80 + model.getPlayer().getX() * 60;
+        int y = model.getPlayer().getY() * 60;
+
+        System.out.println(y);
+        System.out.println(x);
+
+        game.batch.draw(manImage, x, y); // Draw at position (50, 50)
+
+        // Reset color to opaque
+        game.batch.setColor(1, 1, 1, 1);
 
         game.batch.end();
-
-
-
-
-
-
     }
+
 
     @Override
     public void resize(int width, int height) {

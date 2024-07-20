@@ -54,4 +54,11 @@ public class GameBoard {
         }
         return board[x][y];
     }
+
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
+    }
 }

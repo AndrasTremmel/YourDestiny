@@ -12,7 +12,7 @@ public class MyGame extends Game {
 	BitmapFont font;
 
 	ShapeRenderer shaperenderer;
-	private GameModel model;
+	GameModel model;
 
 	public void create() {
 		batch = new SpriteBatch();
