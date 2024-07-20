@@ -13,9 +13,11 @@ public class RectAngle implements Shapes {
     private int g;
     private int b;
     private int a;
+
+    private ShapeRenderer.ShapeType style;
     final private ShapeRenderer shaperenderer;
 
-    public RectAngle(int x, int y, int width, int height, int r, int g, int b, int a, ShapeRenderer shaperenderer) {
+    public RectAngle(int x, int y, int width, int height, int r, int g, int b, int a, ShapeRenderer.ShapeType style, ShapeRenderer shaperenderer) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -24,12 +26,13 @@ public class RectAngle implements Shapes {
         this.g = g;
         this.b = b;
         this.a = a;
+        this.style = style;
         this.shaperenderer = shaperenderer;
     }
 
     @Override
-    public void draw(ShapeRenderer.ShapeType style) {
-        this.shaperenderer.begin(style);
+    public void draw() {
+        this.shaperenderer.begin(this.style);
         this.shaperenderer.setColor(this.r, this.g, this.b, this.a);
         this.shaperenderer.rect(this.x, this.y, this.width, this.height);
         this.shaperenderer.end();

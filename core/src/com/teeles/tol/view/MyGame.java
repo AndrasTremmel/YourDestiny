@@ -3,12 +3,15 @@ package com.teeles.tol.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.teeles.tol.model.GameModel;
 
 public class MyGame extends Game {
 
 	SpriteBatch batch;
 	BitmapFont font;
+
+	ShapeRenderer shaperenderer;
 	private GameModel model;
 
 	public void create() {

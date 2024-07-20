@@ -50,8 +50,8 @@ public class MainMenuScreen implements Screen {
 //        shaperenderer.rect(440, 450, 400, 100);
 //        shaperenderer.end();
 
-        RectAngle rect = new RectAngle(440, 450, 400, 100, 255, 255, 255, 1, shaperenderer);
-        rect.draw(ShapeRenderer.ShapeType.Line);
+        RectAngle rect = new RectAngle(440, 450, 400, 100, 255, 255, 255, 1, ShapeRenderer.ShapeType.Line, shaperenderer);
+        rect.draw();
 
         if (Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
