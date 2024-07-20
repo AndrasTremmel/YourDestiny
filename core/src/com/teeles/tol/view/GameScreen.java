@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.teeles.tol.model.Field;
+import com.teeles.tol.model.field.Field;
 import com.teeles.tol.model.GameModel;
 
 
