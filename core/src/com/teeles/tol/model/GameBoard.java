@@ -25,12 +25,13 @@ public class GameBoard {
     private void GenerateBoard(int width, int height) {
         board = new Field[width][height];
         RandomGenerator rand = new RandomGenerator();
-        rand.AddResult("Green", 80.0);
+        rand.AddResult("Green", 150.0);
         rand.AddResult("Pebble", 10.0);
-        rand.AddResult("Tree", 15.0);
+        rand.AddResult("Tree", 30.0);
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 String fieldType = rand.GetElement();
+                System.out.println(fieldType);
                 Field field;
                 switch (fieldType) {
                     case "Pebble":
