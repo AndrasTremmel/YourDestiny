@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -45,20 +46,23 @@ public class MainMenuScreen implements Screen {
         game.font.draw(game.batch, "New Game", 590, 500);
         game.batch.end();
 
-        shaperenderer.begin(ShapeRenderer.ShapeType.Line);
-        shaperenderer.setColor(255, 255, 255, 1);
-        shaperenderer.rect(440, 450, 400, 100);
-        shaperenderer.end();
+//        shaperenderer.begin(ShapeRenderer.ShapeType.Line);
+//        shaperenderer.setColor(255, 255, 255, 1);
+//        shaperenderer.rect(440, 450, 400, 100);
+//        shaperenderer.end();
+
+        RectAngle rect = new RectAngle(440, 450, 400, 100, 255, 255, 255, 1, shaperenderer);
+        rect.draw(ShapeRenderer.ShapeType.Line);
 
         if (Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(touchPos);
 
-            if (touchPos.x >= 440 && touchPos.x <= 840 && touchPos.y >= 450 && touchPos.y <= 550) {
-                game.setScreen(new GameScreen(game));
-                dispose();
-            }
+             if (rect.isTouched(touchPos)) {
+                 game.setScreen(new GameScreen(game));
+                 dispose();
+             }
         }
     }
 
