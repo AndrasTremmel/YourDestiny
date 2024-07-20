@@ -8,11 +8,17 @@ import java.util.Random;
 
 public class GameBoard {
     private Field[][] board;
+    private int width;
+    private int height;
 
-    public GameBoard(Field[][] board) {
+    public GameBoard(Field[][] board, int width, int height) {
+        this.width = width;
+        this.height = height;
         this.board = board;
     }
     public GameBoard(int width, int height) {
+        this.width = width;
+        this.height = height;
         GenerateBoard(width, height);
     }
 
@@ -34,5 +40,12 @@ public class GameBoard {
 
             }
         }
+    }
+
+    public Field GetField(int x, int y) {
+        if (x < 0 || x >= width || y < 0 || y >= height) {
+            throw new IllegalArgumentException("Illegal index for board.");
+        }
+        return board[x][y];
     }
 }
