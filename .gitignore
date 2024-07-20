@@ -1,4 +1,53 @@
-core/build/
-desktop/build/
 .gradle/
+
+##############################
+## Java
+##############################
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+##############################
+## Gradle
+##############################
+bin/
+.gradle
+.gradletasknamecache
+gradle-app.setting
+!gradle-wrapper.jar
+
+##############################
+## IntelliJ
+##############################
+out/
 .idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+
+##############################
+## NetBeans
+##############################
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+##############################
+## OS X
+##############################
+.DS_Store
+
+##############################
+## Miscellaneous
+##############################
+*.log
