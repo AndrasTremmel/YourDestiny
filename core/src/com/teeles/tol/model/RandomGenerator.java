@@ -17,12 +17,12 @@ public class RandomGenerator {
     public String GetElement() {
         if (results.isEmpty()) { throw new RuntimeException("Cannot get random result from zero long result list."); }
         double randomNumber = rand.nextDouble(fullProb);
-        double currSum = 0.0;
         int i = 0;
-        do {
-            currSum = currSum + results.get(i).probability;
+        double currSum = results.get(i).probability;
+        while (currSum < randomNumber) {
             i++;
-        } while (currSum < randomNumber);
+            currSum = currSum + results.get(i).probability;
+        }
         return results.get(i).element;
     }
 }

@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.teeles.tol.model.field.Field;
+import com.teeles.tol.model.field.*;
 import com.teeles.tol.model.GameModel;
 
 import javax.swing.plaf.synth.SynthTextAreaUI;
@@ -34,6 +34,7 @@ public class GameScreen implements Screen {
     public GameScreen(final MyGame gam, final GameModel model) {
         this.game = gam;
         this.model = model;
+        model.StartNewGame(12, 20);
         this.shaperenderer = new ShapeRenderer();
         this.fields = new Texture[12][20];
 
@@ -54,7 +55,14 @@ public class GameScreen implements Screen {
     public void initialiseFields() {
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 20; j++) {
-                fields[i][j] = rockImage;
+                Class<? extends Field> aClass = model.GetField(i, j).getClass();
+                if (aClass.equals(Green.class)) {
+                    fields[i][j] = greenImage;
+                } else if (aClass.equals(Pebble.class)) {
+                    fields[i][j] = rockImage;
+                } else if (aClass.equals(Tree.class)) {
+                    fields[i][j] = treeImage;
+                }
             }
         }
     }
