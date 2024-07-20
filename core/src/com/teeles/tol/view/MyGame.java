@@ -1,16 +1,19 @@
-package com.teeles.tol;
+package com.teeles.tol.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.teeles.tol.model.GameModel;
 
 public class MyGame extends Game {
 
 	SpriteBatch batch;
 	BitmapFont font;
+	private GameModel model;
 
 	public void create() {
 		batch = new SpriteBatch();
+		model = new GameModel();
 
 		// Use LibGDX's default Arial font.
 		font = new BitmapFont();
@@ -26,4 +29,7 @@ public class MyGame extends Game {
 		font.dispose();
 	}
 
+	public void setGameScreen() {
+		setScreen(new GameScreen(this, model));
+	}
 }

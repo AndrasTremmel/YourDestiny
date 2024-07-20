@@ -1,10 +1,7 @@
-package com.teeles.tol;
+package com.teeles.tol.view;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
-
-import java.lang.reflect.Array;
-import java.util.zip.CheckedInputStream;
 
 public class RectAngle implements Shapes {
 
