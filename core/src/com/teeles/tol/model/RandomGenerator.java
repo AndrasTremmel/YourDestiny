@@ -9,12 +9,12 @@ public class RandomGenerator {
     private Random rand = new Random();
     private List<RandomElement> results = new LinkedList<>();
 
-    public void AddResult(Object result, double prob) {
+    public void AddResult(String result, double prob) {
         results.add(new RandomElement(result, prob));
         fullProb += prob;
     }
 
-    public Object GetElement() {
+    public String GetElement() {
         if (results.isEmpty()) { throw new RuntimeException("Cannot get random result from zero long result list."); }
         double randomNumber = rand.nextDouble(fullProb);
         double currSum = 0.0;

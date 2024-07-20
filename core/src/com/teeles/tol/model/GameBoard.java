@@ -1,10 +1,6 @@
 package com.teeles.tol.model;
 
-import com.teeles.tol.model.field.Field;
-import com.teeles.tol.model.field.Green;
-import com.teeles.tol.model.field.Pebble;
-
-import java.util.Random;
+import com.teeles.tol.model.field.*;
 
 public class GameBoard {
     private Field[][] board;
@@ -28,16 +24,26 @@ public class GameBoard {
 
     private void GenerateBoard(int width, int height) {
         board = new Field[width][height];
-        Random rand = new Random();
+        RandomGenerator rand = new RandomGenerator();
+        rand.AddResult("Green", 80.0);
+        rand.AddResult("Pebble", 10.0);
+        rand.AddResult("Tree", 15.0);
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                int random = rand.nextInt(100);
-                if (random < 80) {
-                    board[i][j] = new Green(i, j, this);
-                } else {
-                    board[i][j] = new Pebble(i, j, this);
+                String fieldType = rand.GetElement();
+                Field field;
+                switch (fieldType) {
+                    case "Pebble":
+                        field = new Pebble(i, j, this);
+                        break;
+                    case "Tree":
+                        field = new Tree(i, j, this);
+                        break;
+                    default:
+                        field = new Green(i, j, this);
+                        break;
                 }
-
+                board[i][j] = field;
             }
         }
     }

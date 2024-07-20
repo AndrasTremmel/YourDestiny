@@ -1,10 +1,10 @@
 package com.teeles.tol.model;
 
 public class RandomElement {
-    public Object element;
+    public String element;
     public double probability;
 
-    public RandomElement(Object element, double probability) {
+    public RandomElement(String element, double probability) {
         this.element = element;
         this.probability = probability;
     }
