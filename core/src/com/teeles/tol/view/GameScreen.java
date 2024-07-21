@@ -99,8 +99,8 @@ public class GameScreen implements Screen {
 
 
         game.batch.begin();
-        for (int i = 0; i < model.getBoard().getHeight(); i++) {
-            for (int j = 0; j < model.getBoard().getWidth(); j++) {
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 20; j++) {
                 game.batch.draw(fields[i][j], 80 + j * 60, i * 60);
             }
         }
@@ -116,6 +116,12 @@ public class GameScreen implements Screen {
         game.batch.setColor(1, 1, 1, 1);
 
         game.batch.end();
+
+        long startTime = System.nanoTime();
+        long waitTime = 80_000_000L; // 500 milliseconds in nanoseconds
+        while (System.nanoTime() - startTime < waitTime) {
+            // Busy-wait loop
+        }
     }
 
 
