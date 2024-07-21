@@ -7,29 +7,29 @@ public class GameBoard {
     private int width;
     private int height;
 
-    public GameBoard(Field[][] board, int width, int height) {
+    public GameBoard(Field[][] board, int height, int width) {
         this.width = width;
         this.height = height;
         this.board = board;
     }
-    public GameBoard(int width, int height) {
+    public GameBoard(int height, int width) {
         this.width = width;
         this.height = height;
-        GenerateBoard(width, height);
+        GenerateBoard(height, width);
     }
 
     public void NewField(int x, int y, Field f) {
         board[x][y] = f;
     }
 
-    private void GenerateBoard(int width, int height) {
-        board = new Field[width][height];
+    private void GenerateBoard(int height, int width) {
+        board = new Field[height][width];
         RandomGenerator rand = new RandomGenerator();
         rand.AddResult("Green", 150.0);
         rand.AddResult("Pebble", 10.0);
         rand.AddResult("Tree", 30.0);
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 String fieldType = rand.GetElement();
                 System.out.println(fieldType);
                 Field field;
@@ -50,7 +50,7 @@ public class GameBoard {
     }
 
     public Field GetField(int x, int y) {
-        if (x < 0 || x >= width || y < 0 || y >= height) {
+        if (x < 0 || x >= height || y < 0 || y >= width) {
             throw new IllegalArgumentException("Illegal index for board.");
         }
         return board[x][y];

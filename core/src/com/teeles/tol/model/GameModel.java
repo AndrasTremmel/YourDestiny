@@ -7,13 +7,17 @@ public class GameModel {
     private GameBoard board;
     private Player player;
 
-    public void StartNewGame(int width, int height) {
-        board = new GameBoard(width, height);
+    public void StartNewGame(int height, int width) {
+        board = new GameBoard(height, width);
         player = new Player(100,5, 5);
     }
 
     public Field GetField(int x, int y) {
         return board.GetField(x, y);
+    }
+
+    public GameBoard getBoard() {
+        return board;
     }
 
     public void moveLeft() {
