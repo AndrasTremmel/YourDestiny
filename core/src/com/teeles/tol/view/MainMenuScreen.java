@@ -45,10 +45,7 @@ public class MainMenuScreen implements Screen {
         game.font.draw(game.batch, "New Game", 590, 500);
         game.batch.end();
 
-//        shaperenderer.begin(ShapeRenderer.ShapeType.Line);
-//        shaperenderer.setColor(255, 255, 255, 1);
-//        shaperenderer.rect(440, 450, 400, 100);
-//        shaperenderer.end();
+
 
         RectAngle rect = new RectAngle(440, 450, 400, 100, 255, 255, 255, 1, ShapeRenderer.ShapeType.Line, shaperenderer);
         rect.draw();
@@ -65,22 +62,6 @@ public class MainMenuScreen implements Screen {
         }
     }
 
-    private void drawRoundedRect(float x, float y, float width, float height, float radius) {
-        // Draw central rectangle
-        shaperenderer.rect(x + radius, y + radius, width - 2 * radius, height - 2 * radius);
-
-        // Draw four side rectangles
-        shaperenderer.rect(x + radius, y, width - 2 * radius, radius);
-        shaperenderer.rect(x + radius, y + height - radius, width - 2 * radius, radius);
-        shaperenderer.rect(x, y + radius, radius, height - 2 * radius);
-        shaperenderer.rect(x + width - radius, y + radius, radius, height - 2 * radius);
-
-        // Draw four corner circles
-        shaperenderer.arc(x + radius, y + radius, radius, 180, 90);
-        shaperenderer.arc(x + width - radius, y + radius, radius, 270, 90);
-        shaperenderer.arc(x + radius, y + height - radius, radius, 90, 90);
-        shaperenderer.arc(x + width - radius, y + height - radius, radius, 0, 90);
-    }
 
     @Override
     public void resize(int width, int height) {

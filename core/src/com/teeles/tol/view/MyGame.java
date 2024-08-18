@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.teeles.tol.EventListener.EventBus;
 import com.teeles.tol.model.GameModel;
 
 public class MyGame extends Game {
@@ -13,6 +14,8 @@ public class MyGame extends Game {
 
 	ShapeRenderer shaperenderer;
 	GameModel model;
+
+	EventBus eventbus = new EventBus();
 
 	public void create() {
 		batch = new SpriteBatch();
@@ -33,6 +36,6 @@ public class MyGame extends Game {
 	}
 
 	public void setGameScreen() {
-		setScreen(new GameScreen(this, model));
+		setScreen(new GameScreen(this, model, eventbus));
 	}
 }

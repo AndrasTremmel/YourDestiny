@@ -21,19 +21,19 @@ public abstract class Character {
     }
 
     public void moveLeft() {
-        x -= 1;
+        y -= 1;
     }
 
     public void moveRight() {
-        x += 1;
-    }
-
-    public void moveUp() {
         y += 1;
     }
 
+    public void moveUp() {
+        x -= 1;
+    }
+
     public void moveDown() {
-        y -= 1;
+        x += 1;
     }
 
 

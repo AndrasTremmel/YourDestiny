@@ -10,18 +10,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.teeles.tol.EventListener.Event;
+import com.teeles.tol.EventListener.EventBus;
+import com.teeles.tol.EventListener.EventListener;
 import com.teeles.tol.model.field.*;
 import com.teeles.tol.model.GameModel;
 
 import javax.swing.plaf.synth.SynthTextAreaUI;
 
 
-public class GameScreen implements Screen {
+public class GameScreen implements Screen, EventListener {
 
     final MyGame game;
     OrthographicCamera camera;
     final GameModel model;
     final ShapeRenderer shaperenderer;
+
+    EventBus eventbus;
 
     Texture greenImage;
     Texture seaImage;
@@ -31,12 +36,19 @@ public class GameScreen implements Screen {
 
     Texture[][] fields;
 
-    public GameScreen(final MyGame gam, final GameModel model) {
+    final int height = 12;
+    final int width = 20;
+
+    public GameScreen(final MyGame gam, final GameModel model, final EventBus eventbus) {
         this.game = gam;
         this.model = model;
-        model.StartNewGame(12, 20);
+        this.eventbus = eventbus;
+        this.eventbus.subscribe("CameraMoves", this);
+
+        model.StartNewGame(30, 30, this.eventbus);
         this.shaperenderer = new ShapeRenderer();
-        this.fields = new Texture[12][20];
+        this.fields = new Texture[height][width];
+
 
         greenImage = new Texture(Gdx.files.internal("green.png"));
         seaImage = new Texture(Gdx.files.internal("sea.png"));
@@ -50,11 +62,13 @@ public class GameScreen implements Screen {
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1280, 720);
+
+
     }
 
     public void initialiseFields() {
-        for (int i = 0; i < model.getBoard().getHeight(); i++) {
-            for (int j = 0; j < model.getBoard().getWidth(); j++) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 Class<? extends Field> aClass = model.GetField(i, j).getClass();
                 if (aClass.equals(Green.class)) {
                     fields[i][j] = greenImage;
@@ -78,8 +92,7 @@ public class GameScreen implements Screen {
         // tell the camera to update its matrices.
         camera.update();
 
-        // tell the SpriteBatch to render in the
-        // coordinate system specified by the camera.
+        // telling the SpriteBatch to render in the coordinate system specified by the camera.
         game.batch.setProjectionMatrix(camera.combined);
 
         //checking if there was any user input
@@ -97,20 +110,20 @@ public class GameScreen implements Screen {
         }
 
 
-
+        //displaying the 12*20 map
         game.batch.begin();
-        for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 20; j++) {
-                game.batch.draw(fields[i][j], 80 + j * 60, i * 60);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                game.batch.draw(fields[i][j], 80 + j * 60, (height - 1 - i) * 60);
             }
         }
 
         game.batch.enableBlending();
         game.batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-        // Draw the overlay image with transparency
+        // Draw the character with transparency
         game.batch.setColor(1, 1, 1, 0.3f); // Set transparency to 50
-        game.batch.draw(manImage, 80 + model.getPlayer().getX() * 60, model.getPlayer().getY() * 60); // Draw at position (50, 50)
+        game.batch.draw(manImage, 80 + (model.getPlayer().getY() - model.getCamera().getY()) * 60, (model.getCamera().getBottomRightX() - model.getPlayer().getX()) * 60); // Draw at position (50, 50)
 
         // Reset color to opaque
         game.batch.setColor(1, 1, 1, 1);
@@ -153,4 +166,35 @@ public class GameScreen implements Screen {
 
     }
 
+    @Override
+    public void onEvent(Event event) {
+        switch (event.getEventType()) {
+            case "CameraMoves":
+                updateFieldsOnScreen();
+                break;
+        }
+
+    }
+
+    void updateFieldsOnScreen() {
+        int i = 0;
+        int j = 0;
+        for (int x = model.getCamera().getX(); x < model.getCamera().getBottomRightX() + 1; x++) {
+            for (int y = model.getCamera().getY(); y < model.getCamera().getBottomRightY() + 1; y++) {
+                Class<? extends Field> aClass = model.GetField(x, y).getClass();
+                if (aClass.equals(Green.class)) {
+                    fields[i][j] = greenImage;
+                } else if (aClass.equals(Pebble.class)) {
+                    fields[i][j] = rockImage;
+                } else if (aClass.equals(Tree.class)) {
+                    fields[i][j] = treeImage;
+                }
+
+                j++;
+            }
+
+            i++;
+            j = 0;
+        }
+    }
 }
