@@ -53,7 +53,7 @@ public class GameScreen implements Screen, EventListener {
         greenImage = new Texture(Gdx.files.internal("green.png"));
         seaImage = new Texture(Gdx.files.internal("sea.png"));
         rockImage = new Texture(Gdx.files.internal("rock.png"));
-        treeImage = new Texture(Gdx.files.internal("tree.png"));
+        treeImage = new Texture(Gdx.files.internal("pixeltree.png"));
         manImage = new Texture(Gdx.files.internal("man.png"));
 
 
