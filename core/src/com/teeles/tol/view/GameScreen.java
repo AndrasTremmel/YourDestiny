@@ -1,6 +1,7 @@
 package com.teeles.tol.view;
 
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -8,8 +9,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.teeles.tol.EventListener.Event;
 import com.teeles.tol.EventListener.EventBus;
 import com.teeles.tol.EventListener.EventListener;
@@ -26,6 +29,9 @@ public class GameScreen implements Screen, EventListener {
     final GameModel model;
     final ShapeRenderer shaperenderer;
 
+    ActivityBar activityBar;
+
+    Stage stage;
     EventBus eventbus;
 
     Texture greenImage;
@@ -39,11 +45,17 @@ public class GameScreen implements Screen, EventListener {
     final int height = 12;
     final int width = 20;
 
+
     public GameScreen(final MyGame gam, final GameModel model, final EventBus eventbus) {
         this.game = gam;
         this.model = model;
         this.eventbus = eventbus;
         this.eventbus.subscribe("CameraMoves", this);
+
+        this.stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+
+        this.activityBar = new ActivityBar(stage);
 
         model.StartNewGame(30, 30, this.eventbus);
         this.shaperenderer = new ShapeRenderer();
@@ -118,6 +130,8 @@ public class GameScreen implements Screen, EventListener {
             }
         }
 
+        activityBar.show();
+
         game.batch.enableBlending();
         game.batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
@@ -163,7 +177,7 @@ public class GameScreen implements Screen, EventListener {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
     @Override
