@@ -1,2 +1,2 @@
 # YourDestiny
-Developing a surival and exploration game in Java using the libGDX graphical library
+Developing a survival and exploration game in Java using the libGDX graphical library
