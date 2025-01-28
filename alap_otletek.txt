@@ -1,0 +1,116 @@
+Ide lehet gyűjteni a projekt alapjaival kapcsolatos ötleteket.
+Különválasztva felsorolok mechanikákat/építőköveket, ezek közül többet is össze lehet variálni.
+
+
+ALAPVETÉSEK:
+- cooperative játék (vagy semi-cooperative: a játékosok alapból együtt küzdenek egy cél érdekében,
+  de lehet valamilyen egymással való versengés is pl. egy titkos áruló vagy titkos személyek célok)
+- minimális grafikai megjelenítés, pixeles stílus?
+- több, legalább 3 játékos tud együtt játszani interneten (@Milos), maximum 5-6(?) fő
+
+
+MAJDNEM ALAPVETÉSEK:
+- rp jellegű karakterfejlesztés:
+    - van lehetőség kasztot/fajt választani a játék elején
+    - lehet tárgyakat/lapokat/öcsit gyűjteni a játékban
+    - tulajdonságok fejleszthetőek - (talent tree?)
+- relatív egyszerű kör-vezérelt vagy ahhoz hasonló működés (nem kötelező ehhez ragaszkodni csak kérdés,
+  nehéz egy teljesen valós-idejű játék megvalósítása úgy, hogy az tényleg jó legyen)
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+TÉMA:
+- zombiapokaliszis túlélés
+- labirintusból kimenekülés/onnan loot kihozása (akár lethal company jellegű témához hasonlóan, tehát
+  nem kell konkrét labirintusnak lennie)
+- városok közötti mászkálás, azok megvédése szörnyektől
+- valami sziget/város/vár vagy ilyesmi bevédése ostrom ellen
+- túlélés lakatlan szigeten (Robinson Crusoe, Hellapagos, stb.)
+- kolónia menedzselése egy apokaliptikus világban (pl. Frostpunk, Dead of Winter) - nem könnyű a közepes
+  játékosszám miatt, de meg lehet próbálni kitalálni valamit
+- valamilyen kicsit horror jellegű játék
+
+
+-----------------------------------------------------------------------------------------------------------
+
+
+FÉLIG REAL TIME VEZÉRLÉS:
+- a játékosok nem mondjuk sorban, körökre osztottan kerülnek sorra, hanem mindenki egyszerre mondjuk minden 25-30
+  másodpercben kiválaszt egy akciót és utána a játék 5 másodperc alatt végrehajtja azokat, szörnyek támadnak,
+  események jöhetnek stb.
+- lehetnek akár kis akciók (pl. varázsital megivás, fegyver elővétel), amiket kis várakozással (3-5 másodperc) hajt
+  végre a karakter, ha nem futsz ki az időből
+- pörgősebb játékmenet
+- kevésbé társasjátékos érzés
+
+
+-----------------------------------------------------------------------------------------------------------
+
+NA JÓ DE MIT CSINÁLSZ JÁTÉKOSKÉNT?
+A játékosok cselekvési lehetőségei (akár több is kombinálható, bár kevésbe, mint az ellenfeleknél)
+
+
+"BASIC" PAKLI ÉPÍTÉS ALAPMECHANIKA:
+- játékosok saját paklival, ez bővül a játék során
+- kezdeti pakli lehet kaszt/faj alapján kialakított
+- lootolás és tulajdonsáok fejlesztése is akár megoldható így
+
+
+"AKCIÓVEZÉRELT" PAKLI ÉPÍTÉS:
+- megadott akciók közül választanak a játékosok minden körben megadott számút, de húzott lapokkal ezek erősíthetők
+  vagy módosíthatók (ezen módosítólapok fejleszthetők/gyűjthetők)
+    - nagyobb szabadság
+    - lapok lehetnek egyedibbek, radikálisabbak
+
+
+"HOMÁLYRÉVES" PAKLI ÉPÍTÉS:
+- minden lap kézben van, amit kijátszunk az kerül dobópakliba és vehető vissza később
+    - lehet többszöri használat is (pl. 2 használat után dobódik el)
+- nem szükséges konkrét lapokként megjelenítés
+- várhatóan csak kevesebb lapot szerzel, vagy mindig csak egy részére látsz rá/van a kezedben
+
+
+------------------------------------------------------------------------------------------------------------
+
+KIT AKARUNK LEGYŐZNI?
+Az ELLENFÉL működtetésének lehetőségei (akár több is kombinálható)
+
+
+"BEÉPÍTETT" KÜZDELEM:
+- nem konkrét szörnyeket kell (csak?) legyőzni, hanem pl. az a kihívás, hogy mondjuk minden nap végére legyen
+  étel meg ital, vagy tűz a hideg elől, stb.
+- egy folyamatos nyomást rak a játékosokra, hatása növelhető azzal, hogy mondjuk idővel kiürülnek a közeli források
+  és messzebb kell menni dolgokért
+
+
+ELLENFÉL MŰKÖDÉSÉNEK MEGOLDÁSA PAKLI ÉPÍTÉSSEL:
+- van egy/több (akár minden helyszínhez 1-1) ellenfél pakli
+    - lehetnek konkrét szörnyek, de akár események is
+- minden körben 1-1 végrehajtódik
+- játék során bővül, a paklik magukat erősítik
+    - változatos, automatikus erősödés
+        - rugalmasságra kényszerít
+    - könnyen cserélhető játékmódok/elenfélstílusok (pl. minden játékba 5 játékmódot (kezdőpaklit) kever egybe a gép)
+        - később könnyen kiegészíthető/bővíthető
+    - könnyű nehézségi szint állítási lehetőség (akár játék közben is lehet "csalni", ha rosszul állnak a játékosok és
+      könnyebb lapok rakódnak a pakliba vagy fordítva, ha túl jól állnak)
+- nem szükséges a konkrét lapként ábrázolás (sőt nem is ajánlott)
+- lehet "rejtett" módot csinálni: a játékosok sokszor nem látnak változást, de a háttérben pl. erősödik az ellenfél
+
+
+SIMA, ERŐSŐDŐ VÉLETLENSZÁMMAL MEGOLDOTT SZÖRNYGENERÁLÁS:
+- elsősorban akkor érdekes, ha a szörnyek nagy területen/sok helyen jelenhetnek meg (nincsenek konkrét helyszínek)
+- igazából elég hasonló az előzöhöz a konkrét megvalósítás (legalábbis az én fejemben)
+
+
+ELLENFÉL LAPJAI A JÁTÉKOSOK PAKLIJÁBAN:
+- ha a játékosok pakli építéssel "működnek", akkor az is lehet, hogy az ő paklijukban (is?) vannak ellenfelek, tematikusan
+  ilyenkor ront rájuk valami förtelem a sötétből vagy történik velük valamilyen esemény
+
+
+ELLENFÉL/NEGATÍV EFFECTEK/ESEMÉNYEK KOCKADOBÁSSAL:
+- nem nagyon van mit magyarázni rajta szerintem...
+- társasjátékosabb hatás
