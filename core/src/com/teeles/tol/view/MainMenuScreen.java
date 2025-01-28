@@ -1,14 +1,23 @@
 package com.teeles.tol.view;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class MainMenuScreen implements Screen {
+public class MainMenuScreen extends ApplicationAdapter implements Screen {
 
     final MyGame game;
     Music backgroundMusic;
@@ -16,11 +25,30 @@ public class MainMenuScreen implements Screen {
     ShapeRenderer shaperenderer;
     OrthographicCamera camera;
 
+    Stage stage;
+    Texture newGameTexture;
+    Image newGameImage;
+
     public MainMenuScreen(final MyGame gam) {
         game = gam;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1280, 720);
+
+        this.stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+        this.newGameTexture = new Texture(Gdx.files.internal("newgame.png"));
+        this.newGameImage = new Image(newGameTexture);
+
+        newGameImage.setPosition(440, 450);
+        stage.addActor(newGameImage);
+        newGameImage.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setGameScreen();
+                dispose();
+            }
+        });
 
         // load the background music
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("got.wav"));
@@ -40,7 +68,12 @@ public class MainMenuScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
-        game.batch.begin();
+
+
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
+
+        /*game.batch.begin();
         game.batch.setColor(255, 255, 255, 1);
         game.font.draw(game.batch, "New Game", 590, 500);
         game.batch.end();
@@ -59,7 +92,7 @@ public class MainMenuScreen implements Screen {
                  game.setGameScreen();
                  dispose();
              }
-        }
+        }*/
     }
 
 
@@ -87,5 +120,6 @@ public class MainMenuScreen implements Screen {
     public void dispose() {
         shaperenderer.dispose();
         backgroundMusic.dispose();
+        stage.dispose();
     }
 }

@@ -5,6 +5,7 @@ import com.teeles.tol.EventListener.EventBus;
 import com.teeles.tol.camera.Camera;
 import com.teeles.tol.model.character.Player;
 import com.teeles.tol.model.field.Field;
+import com.teeles.tol.model.field.Green;
 
 public class GameModel {
     private GameBoard board;
@@ -86,19 +87,31 @@ public class GameModel {
     }
 
     public boolean canMoveLeft() {
-        return player.getY() > 0;
+        if (player.getY() == 0)
+            return false;
+        Class<? extends Field> aClass = GetField(player.getX(), player.getY() - 1).getClass();
+        return aClass.equals(Green.class);
     }
 
     public boolean canMoveRight() {
-        return player.getY() < board.getWidth() - 1;
+        if (player.getY() == board.getWidth() - 1)
+                return false;
+        Class<? extends Field> aClass = GetField(player.getX(), player.getY() + 1).getClass();
+        return aClass.equals(Green.class);
     }
 
     public boolean canMoveUp() {
-        return player.getX() > 0;
+        if (player.getX() == 0)
+            return false;
+        Class<? extends Field> aClass = GetField(player.getX() - 1, player.getY()).getClass();
+        return aClass.equals(Green.class);
     }
 
     public boolean canMoveDown() {
-        return player.getX() < board.getHeight() - 1;
+        if (player.getX() == board.getHeight() - 1)
+            return false;
+        Class<? extends Field> aClass = GetField(player.getX() + 1, player.getY()).getClass();
+        return aClass.equals(Green.class);
     }
 
     public Player getPlayer() {

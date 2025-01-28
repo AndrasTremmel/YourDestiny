@@ -1,9 +1,12 @@
 package com.teeles.tol.view;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.teeles.tol.EventListener.EventBus;
 import com.teeles.tol.model.GameModel;
 
@@ -23,6 +26,7 @@ public class MyGame extends Game {
 
 		// Use LibGDX's default Arial font.
 		font = new BitmapFont();
+		System.out.println("Starting");
 		this.setScreen(new MainMenuScreen(this));
 	}
 
